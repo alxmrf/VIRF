@@ -1,5 +1,6 @@
 
 interface IAnswer {
+    id: string
     answer : string
     isCorrect: boolean
 }
@@ -13,9 +14,9 @@ interface IBundleofAnswer {
 
 
 export const dbAnswers = [{
-    answer1: {answer: "Burj khalifa",isCorrect : true},
-    answer2: {answer: "Empire State Building", isCorrect: false},
-    answer3: {answer: "Makkah Royal Clock Tower",isCorrect : false},
-    answer4: {answer : "Shanghai Tower", isCorrect: false}}
+    answer1: {id : "0" ,answer: "Burj khalifa",isCorrect : true},
+    answer2: {id : "1" ,answer: "Empire State Building", isCorrect: false},
+    answer3: {id : "2", answer: "Makkah Royal Clock Tower",isCorrect : false},
+    answer4: {id : "3", answer : "Shanghai Tower", isCorrect: false}}
 ]
 

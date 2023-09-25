@@ -11,16 +11,17 @@ export default function Guessing_game(){
     const [selectedAnswer, setSelectedAnswer] = useState(1);
     let indexOfQuestion = 0
     let indexOfAnswer = 0
-
+    let e 
     const [answer1,setAnswer1] = useState(dbAnswers[0].answer1.answer)
     const [answer2,setAnswer2] = useState(dbAnswers[0].answer2.answer)
     const [answer3,setAnswer3] = useState(dbAnswers[0].answer3.answer)
     const [answer4,setAnswer4] = useState(dbAnswers[0].answer4.answer)
-
-    
+    const handleCorrectAnswerChange = (callBackFn: () => any) => {callBackFn()}
     
     const handleQuestionChange = () =>{
         let ChangeAnswerAndQuestion = ()=>{
+            handleCorrectAnswerChange (()=>{
+            })
             setAnswer1 (()=>{
                 let newAnswer1Value = dbAnswers[indexOfAnswer].answer1.answer
                 indexOfAnswer++
