@@ -2,6 +2,7 @@
 "use client"
 import { useState } from "react"
 import { dbAnswers } from "./db"
+import { arrayBuffer } from "stream/consumers"
 
 
 export default function Guessing_game(){
@@ -12,15 +13,22 @@ export default function Guessing_game(){
     let indexOfQuestion = 0
     let indexOfAnswer = 0
 
+    let e = 1
     const [answer1,setAnswer1] = useState(dbAnswers[0].answer1.answer)
     const [answer2,setAnswer2] = useState(dbAnswers[0].answer2.answer)
     const [answer3,setAnswer3] = useState(dbAnswers[0].answer3.answer)
     const [answer4,setAnswer4] = useState(dbAnswers[0].answer4.answer)
-
-    
+    const [currentAnswer,setCurrentAnswer]= useState(dbAnswers[0].correctAnswer)
+    const handleCorrectAnswerChange = (callBackFn: () => any) => {callBackFn()}
     
     const handleQuestionChange = () =>{
         let ChangeAnswerAndQuestion = ()=>{
+            setCurrentAnswer (()=>{
+            let newCurrentAnswer= dbAnswers[e].correctAnswer
+            e++
+            return newCurrentAnswer
+
+            })
             setAnswer1 (()=>{
                 let newAnswer1Value = dbAnswers[indexOfAnswer].answer1.answer
                 indexOfAnswer++
@@ -64,6 +72,8 @@ export default function Guessing_game(){
                 </tr>
             </table>
         <button onClick={handleQuestionChange}>next question</button>
+
+        <h1>{currentAnswer}</h1>
 
         {answer1.id === selectedAnswer && (
 

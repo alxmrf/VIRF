@@ -1,9 +1,12 @@
 
 interface IAnswer {
+    id: string
+
     answer : string
     isCorrect: boolean
 }
 interface IBundleofAnswer {
+    correctAnswer :string
     answer1:IAnswer
     answer2:IAnswer
     answer3:IAnswer
@@ -13,9 +16,16 @@ interface IBundleofAnswer {
 
 
 export const dbAnswers = [{
-    answer1: {answer: "Burj khalifa",isCorrect : true},
-    answer2: {answer: "Empire State Building", isCorrect: false},
-    answer3: {answer: "Makkah Royal Clock Tower",isCorrect : false},
-    answer4: {answer : "Shanghai Tower", isCorrect: false}}
+    correctAnswer : "0",
+    answer1: {id : "0" ,answer: "Burj khalifa",isCorrect : true},
+    answer2: {id : "1" ,answer: "Empire State Building", isCorrect: false},
+    answer3: {id : "2" ,answer: "Makkah Royal Clock Tower",isCorrect : false},
+    answer4: {id : "3" ,answer : "Shanghai Tower", isCorrect: false}},{
+    correctAnswer :"3",
+    answer1: {id : "0" ,answer: "Burj khalifa",isCorrect : false},
+    answer2: {id : "1" ,answer: "Empire State Building", isCorrect: false},
+    answer3: {id : "2", answer: "Makkah Royal Clock Tower",isCorrect : false},
+    answer4: {id : "3", answer : "Shanghai Tower", isCorrect: true}}
+
 ]
 
