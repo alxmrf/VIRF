@@ -1,58 +1,107 @@
 
 "use client"
 import { useState } from "react"
-import { dbAnswers } from "./db"
+import { dbAnswers, dbQuestions } from "./db"
 import { arrayBuffer } from "stream/consumers"
 
 
 export default function Guessing_game(){
-    const questions =[""]
-    const answers = [[""]]
-    const [currentQuestion,setCurrentQuestion]  = useState("whats the tallest building in the world")
-    const [selectedAnswer, setSelectedAnswer] = useState(1);
-    let indexOfQuestion = 0
-    let indexOfAnswer = 0
-
     let e = 1
+    const [currentQuestion,setCurrentQuestion]  = useState(dbQuestions[0])
+    const [selectedAnswer, setSelectedAnswer] = useState("9");
     const [answer1,setAnswer1] = useState(dbAnswers[0].answer1.answer)
     const [answer2,setAnswer2] = useState(dbAnswers[0].answer2.answer)
     const [answer3,setAnswer3] = useState(dbAnswers[0].answer3.answer)
     const [answer4,setAnswer4] = useState(dbAnswers[0].answer4.answer)
-    const [currentAnswer,setCurrentAnswer]= useState(dbAnswers[0].correctAnswer)
-    const handleCorrectAnswerChange = (callBackFn: () => any) => {callBackFn()}
+    const [currentAnswer,setCurrentAnswer]= useState("0")
+    let isAnswerCorrect = false
+    let isAnswerWrong = false
+        const resultDeterminer = () => {
+            if (currentAnswer === selectedAnswer) {
+                isAnswerCorrect = true
+            }
+            if (currentAnswer != selectedAnswer) {
+                isAnswerWrong = true
+            }
+        }}
     
-    const handleQuestionChange = () =>{
-        let ChangeAnswerAndQuestion = ()=>{
-            setCurrentAnswer (()=>{
-            let newCurrentAnswer= dbAnswers[e].correctAnswer
-            e++
-            return newCurrentAnswer
 
+
+        const defineCurrentAnswerAsId0 = ()=>{
+            setSelectedAnswer (()=> {
+            let newCurrentAnswer = "0"
+            return newCurrentAnswer
+        })}
+        const defineCurrentAnswerAsId1 = ()=>{
+            setSelectedAnswer (()=> {
+            let newCurrentAnswer = "1"
+            return newCurrentAnswer
+        })
+        const resultDeterminer = () => {
+            if (currentAnswer === selectedAnswer) {
+                isAnswerCorrect = true
+            }
+            if (currentAnswer != selectedAnswer) {
+                isAnswerWrong = true
+            }
+        }}
+    
+        const defineCurrentAnswerAsId2 = ()=>{
+            setSelectedAnswer (()=> {
+            let newCurrentAnswer = "2"
+            return newCurrentAnswer
+        })
+        const resultDeterminer = () => {
+            if (currentAnswer === selectedAnswer) {
+                isAnswerCorrect = true
+            }
+            if (currentAnswer != selectedAnswer) {
+                isAnswerWrong = true
+            }
+        }}
+    
+        const defineCurrentAnswerAsId3 = ()=>{
+            setSelectedAnswer (()=> {
+            let newCurrentAnswer = "3"
+            return newCurrentAnswer
+        })
+        const resultDeterminer = () => {
+            if (currentAnswer === selectedAnswer) {
+                isAnswerCorrect = true
+            }
+            if (currentAnswer != selectedAnswer) {
+                isAnswerWrong = true
+            }
+        }}
+
+    const handleQuestionChange = () =>{
+            setCurrentAnswer (() => {
+            let newCurrentAnswer= dbAnswers[e].correctAnswer
+            isAnswerCorrect = false
+            isAnswerCorrect = false
+            return newCurrentAnswer
             })
             setAnswer1 (()=>{
-                let newAnswer1Value = dbAnswers[indexOfAnswer].answer1.answer
-                indexOfAnswer++
+                let newAnswer1Value = dbAnswers[e].answer1.answer
                 return newAnswer1Value
             })
             setAnswer2(()=>{
-                let newAnswer2Value = dbAnswers[indexOfAnswer].answer2.answer
+                let newAnswer2Value = dbAnswers[e].answer2.answer
                 return newAnswer2Value
             })
             setAnswer3(()=>{
-                let newAnswer3Value = dbAnswers[indexOfAnswer].answer3.answer
+                let newAnswer3Value = dbAnswers[e].answer3.answer
                 return newAnswer3Value
             })
             setAnswer4(()=>{
-                let newAnswer4Value = dbAnswers[indexOfAnswer].answer4.answer
+                let newAnswer4Value = dbAnswers[e].answer4.answer
                 return newAnswer4Value
             })
-            setCurrentQuestion(()=>{
-                let newQuestion = questions[indexOfQuestion]
-                indexOfQuestion++
+            setCurrentQuestion(() => {
+                let newQuestion = dbQuestions[e]
                 return newQuestion
-            })}
+            })
     }
-
     return(
 
         <div>
@@ -63,22 +112,26 @@ export default function Guessing_game(){
         <div>
             <table>
                 <tr>
-                    <td><button>{answer1}</button></td>
-                    <td><button>{answer2}</button></td>
+                    <td><button onClick={defineCurrentAnswerAsId0}>{answer1}</button></td>
+                    <td><button onClick={defineCurrentAnswerAsId1}>{answer2}</button></td>
                 </tr>
                 <tr>
-                    <td><button>{answer3}</button></td>
-                    <tr><button>{answer4}</button></tr>
+                    <td><button onClick={defineCurrentAnswerAsId2}>{answer3}</button></td>
+                    <tr><button onClick={defineCurrentAnswerAsId3}>{answer4}</button></tr>
                 </tr>
             </table>
         <button onClick={handleQuestionChange}>next question</button>
 
+        {isAnswerCorrect && (
+            <h1>You're Correct</h1>
+        ) }
+
+        {isAnswerWrong &&(
+            <h1>you're wrong</h1>
+        )}
+
         <h1>{currentAnswer}</h1>
 
-        {answer1.id === selectedAnswer && (
-
-        <h1>MOSTRAR QUE ACERTOU</h1>
-        )}
         <button onClick={() => console.log(dbAnswers[0].answer1)}>teste</button>
         </div>
         </div>
