@@ -16,69 +16,45 @@ export default function Guessing_game(){
     const [currentAnswer,setCurrentAnswer]= useState("0")
     let isAnswerCorrect = false
     let isAnswerWrong = false
-        const resultDeterminer = () => {
-            if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
-            }
-            if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
-            }
+    const handleDisplayOfResult= ()=>{
+        if(currentAnswer  === selectedAnswer){
+            isAnswerCorrect = true
+        }
+        if(currentAnswer != selectedAnswer && selectedAnswer != "9"){
+            isAnswerWrong = true
         }}
-    
 
 
         const defineCurrentAnswerAsId0 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "0"
             return newCurrentAnswer
-        })}
+        })
+            handleDisplayOfResult()}
         const defineCurrentAnswerAsId1 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "1"
             return newCurrentAnswer
         })
-        const resultDeterminer = () => {
-            if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
-            }
-            if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
-            }
-        }}
+            handleDisplayOfResult()}
     
         const defineCurrentAnswerAsId2 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "2"
             return newCurrentAnswer
         })
-        const resultDeterminer = () => {
-            if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
-            }
-            if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
-            }
-        }}
+            handleDisplayOfResult()}
     
         const defineCurrentAnswerAsId3 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "3"
             return newCurrentAnswer
         })
-        const resultDeterminer = () => {
-            if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
-            }
-            if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
-            }
-        }}
+            handleDisplayOfResult()}
 
     const handleQuestionChange = () =>{
             setCurrentAnswer (() => {
             let newCurrentAnswer= dbAnswers[e].correctAnswer
-            isAnswerCorrect = false
-            isAnswerCorrect = false
             return newCurrentAnswer
             })
             setAnswer1 (()=>{
@@ -121,7 +97,7 @@ export default function Guessing_game(){
                 </tr>
             </table>
         <button onClick={handleQuestionChange}>next question</button>
-
+        <h1>{selectedAnswer}</h1>
         {isAnswerCorrect && (
             <h1>You're Correct</h1>
         ) }
