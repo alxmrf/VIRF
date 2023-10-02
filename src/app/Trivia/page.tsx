@@ -14,16 +14,11 @@ export default function Guessing_game(){
     const [answer3,setAnswer3] = useState(dbAnswers[0].answer3.answer)
     const [answer4,setAnswer4] = useState(dbAnswers[0].answer4.answer)
     const [currentAnswer,setCurrentAnswer]= useState("0")
-    let isAnswerCorrect = false
-    let isAnswerWrong = false
-        const resultDeterminer = () => {
-            if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
-            }
-            if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
-            }
-        }}
+    const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
+    const [isAnswerWrong, setIsAnswerWrong] = useState(false)
+    const handleDisplayOfResult = (callbackFn: () => any) => {
+        callbackFn();
+        };
     
 
 
@@ -31,54 +26,103 @@ export default function Guessing_game(){
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "0"
             return newCurrentAnswer
+        })
+        setTimeout(() => {
+            console.log(selectedAnswer)
+        }, 3000);
+        handleDisplayOfResult (()=>{
+            if (currentAnswer === selectedAnswer) {
+                console.log(currentAnswer+selectedAnswer)
+                console.log(isAnswerCorrect)
+                setIsAnswerCorrect(()=>{
+                return true
+                })
+                console.log(isAnswerCorrect)
+            }
+            if (currentAnswer != selectedAnswer) {
+                console.log(currentAnswer+selectedAnswer)
+                console.log(isAnswerWrong)
+                setIsAnswerWrong(()=>{
+                    return true
+                })
+                console.log(isAnswerWrong)
+            }
         })}
         const defineCurrentAnswerAsId1 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "1"
             return newCurrentAnswer
         })
-        const resultDeterminer = () => {
+        handleDisplayOfResult (()=>{
             if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
+                console.log(isAnswerCorrect)
+                setIsAnswerCorrect(()=>{
+                return true
+                })
+                console.log(isAnswerCorrect)
             }
             if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
+                console.log(isAnswerWrong)
+                setIsAnswerWrong(()=>{
+                    return true
+                })
+                console.log(isAnswerWrong)
             }
-        }}
+        })}
     
         const defineCurrentAnswerAsId2 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "2"
             return newCurrentAnswer
         })
-        const resultDeterminer = () => {
+        handleDisplayOfResult (()=>{
             if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
+                console.log(isAnswerCorrect)
+                setIsAnswerCorrect(()=>{
+                return true
+                })
+                console.log(isAnswerCorrect)
             }
             if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
+                console.log(isAnswerWrong)
+                setIsAnswerWrong(()=>{
+                    return true
+                })
+                console.log(isAnswerWrong)
             }
-        }}
+        })}
     
         const defineCurrentAnswerAsId3 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "3"
             return newCurrentAnswer
         })
-        const resultDeterminer = () => {
+        handleDisplayOfResult (()=>{
             if (currentAnswer === selectedAnswer) {
-                isAnswerCorrect = true
+                console.log(isAnswerCorrect)
+                setIsAnswerCorrect(()=>{
+                return true
+                })
+                console.log(isAnswerCorrect)
             }
             if (currentAnswer != selectedAnswer) {
-                isAnswerWrong = true
+                console.log(isAnswerWrong)
+                setIsAnswerWrong(()=>{
+                    return true
+                })
+                console.log(isAnswerWrong)
             }
-        }}
+        })}
 
     const handleQuestionChange = () =>{
             setCurrentAnswer (() => {
             let newCurrentAnswer= dbAnswers[e].correctAnswer
-            isAnswerCorrect = false
-            isAnswerCorrect = false
+            setIsAnswerCorrect(()=>{
+                return false
+            })
+            setIsAnswerWrong(()=>{
+                return false
+            })
             return newCurrentAnswer
             })
             setAnswer1 (()=>{
