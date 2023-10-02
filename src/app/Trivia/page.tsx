@@ -27,12 +27,8 @@ export default function Guessing_game(){
             let newCurrentAnswer = "0"
             return newCurrentAnswer
         })
-        setTimeout(() => {
-            console.log(selectedAnswer)
-        }, 3000);
         handleDisplayOfResult (()=>{
             if (currentAnswer === selectedAnswer) {
-                console.log(currentAnswer+selectedAnswer)
                 console.log(isAnswerCorrect)
                 setIsAnswerCorrect(()=>{
                 return true
@@ -40,7 +36,6 @@ export default function Guessing_game(){
                 console.log(isAnswerCorrect)
             }
             if (currentAnswer != selectedAnswer) {
-                console.log(currentAnswer+selectedAnswer)
                 console.log(isAnswerWrong)
                 setIsAnswerWrong(()=>{
                     return true
@@ -117,12 +112,7 @@ export default function Guessing_game(){
     const handleQuestionChange = () =>{
             setCurrentAnswer (() => {
             let newCurrentAnswer= dbAnswers[e].correctAnswer
-            setIsAnswerCorrect(()=>{
-                return false
-            })
-            setIsAnswerWrong(()=>{
-                return false
-            })
+            c
             return newCurrentAnswer
             })
             setAnswer1 (()=>{
