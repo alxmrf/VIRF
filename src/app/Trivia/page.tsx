@@ -1,6 +1,6 @@
 
 "use client"
-import { useState } from "react"
+import { use, useState } from "react"
 import { dbAnswers, dbQuestions } from "./db"
 import { arrayBuffer } from "stream/consumers"
 
@@ -14,47 +14,76 @@ export default function Guessing_game(){
     const [answer3,setAnswer3] = useState(dbAnswers[0].answer3.answer)
     const [answer4,setAnswer4] = useState(dbAnswers[0].answer4.answer)
     const [currentAnswer,setCurrentAnswer]= useState("0")
-    let isAnswerCorrect = false
-    let isAnswerWrong = false
-    const handleDisplayOfResult= ()=>{
-        if(currentAnswer  === selectedAnswer){
-            isAnswerCorrect = true
+    const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
+    const [isAnswerWrong, setIsAnswerWrong] = useState(false)
+    const [nextQuestionButtonValue, setNextQuestionButtonValue] =useState(false)
+    const handleDisplayOfResult = (callbackFn: () => any) => {
+        callbackFn();
+        };
+    
+
+
+        const handleNextQuestionButton = (callbackFn: ()=> any ) => {
+            callbackFn
         }
-        if(currentAnswer != selectedAnswer && selectedAnswer != "9"){
-            isAnswerWrong = true
-        }}
-
-
+        const handleResult = ()  =>{
+            handleDisplayOfResult (()=>{
+                if (currentAnswer === selectedAnswer) {
+                    console.log(currentAnswer+selectedAnswer)
+                    console.log(isAnswerCorrect)
+                    setIsAnswerCorrect(()=>{
+                    return true
+                    })
+                    console.log(isAnswerCorrect)
+                }
+                if (currentAnswer != selectedAnswer) {
+                    console.log(currentAnswer+selectedAnswer)
+                    console.log(isAnswerWrong)
+                    setIsAnswerWrong(()=>{
+                        return true
+                    })
+                    console.log(isAnswerWrong)
+                }
+            })
+            setNextQuestionButtonValue (()=>{
+                return true
+            })
+        }
         const defineCurrentAnswerAsId0 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "0"
             return newCurrentAnswer
-        })
-            handleDisplayOfResult()}
+        })}
         const defineCurrentAnswerAsId1 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "1"
             return newCurrentAnswer
-        })
-            handleDisplayOfResult()}
+        })}
     
         const defineCurrentAnswerAsId2 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "2"
             return newCurrentAnswer
-        })
-            handleDisplayOfResult()}
+        })}
     
         const defineCurrentAnswerAsId3 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "3"
             return newCurrentAnswer
-        })
-            handleDisplayOfResult()}
+        })}
 
     const handleQuestionChange = () =>{
+            setNextQuestionButtonValue(()=>{
+                return false
+            })
             setCurrentAnswer (() => {
             let newCurrentAnswer= dbAnswers[e].correctAnswer
+            setIsAnswerCorrect(()=>{
+                return false
+            })
+            setIsAnswerWrong(()=>{
+                return false
+            })
             return newCurrentAnswer
             })
             setAnswer1 (()=>{
@@ -96,19 +125,15 @@ export default function Guessing_game(){
                     <tr><button onClick={defineCurrentAnswerAsId3}>{answer4}</button></tr>
                 </tr>
             </table>
-        <button onClick={handleQuestionChange}>next question</button>
-        <h1>{selectedAnswer}</h1>
+
+        <button onClick={handleResult}>commit your answer</button>
+        {nextQuestionButtonValue    && (<button onClick={handleQuestionChange}>next question</button>)}
         {isAnswerCorrect && (
             <h1>You're Correct</h1>
         ) }
-
         {isAnswerWrong &&(
             <h1>you're wrong</h1>
         )}
-
-        <h1>{currentAnswer}</h1>
-
-        <button onClick={() => console.log(dbAnswers[0].answer1)}>teste</button>
         </div>
         </div>
     )
