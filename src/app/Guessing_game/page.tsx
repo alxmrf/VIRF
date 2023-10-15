@@ -14,7 +14,6 @@ export default function Guessing_game(){
         callBackFn()
     }
     //functions
-
     //handles variables that change what is shown on screen, also sets a random variable to be the correct answer of the guessing game
     const handleStart = () => (
         setGameStarted(()=>{
