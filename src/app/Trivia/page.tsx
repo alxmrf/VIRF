@@ -17,6 +17,10 @@ export default function Guessing_game(){
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
     const [isAnswerWrong, setIsAnswerWrong] = useState(false)
     const [nextQuestionButtonValue, setNextQuestionButtonValue] =useState(false)
+    const [button1Clicked, setButton1Clicked] = useState(false)
+    const [button2Clicked, setButton2Clicked] = useState(false)
+    const [button3Clicked, setButton3Clicked] = useState(false)
+    const [button4Clicked, setButton4Clicked] = useState(false)
     const handleDisplayOfResult = (callbackFn: () => any) => {
         callbackFn();
         };
@@ -53,24 +57,72 @@ export default function Guessing_game(){
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "0"
             return newCurrentAnswer
-        })}
+        })
+            setButton1Clicked(()=>{
+                return true
+            })
+            setButton2Clicked(()=>{
+                return false
+            })
+            setButton3Clicked(()=>{
+                return false
+            })
+            setButton4Clicked(()=>{
+                return false
+            }) }
         const defineCurrentAnswerAsId1 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "1"
             return newCurrentAnswer
-        })}
+            })
+            setButton1Clicked(()=>{
+                return false
+            })
+            setButton2Clicked(()=>{
+                return true
+            })
+            setButton3Clicked(()=>{
+                return false
+            })
+            setButton4Clicked(()=>{
+                return false
+            }) }
     
         const defineCurrentAnswerAsId2 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "2"
             return newCurrentAnswer
-        })}
+            })
+            setButton1Clicked(()=>{
+                return false
+            })
+            setButton2Clicked(()=>{
+                return false
+            })
+            setButton3Clicked(()=>{
+                return true
+            })
+            setButton4Clicked(()=>{
+                return false
+            }) }
     
         const defineCurrentAnswerAsId3 = ()=>{
             setSelectedAnswer (()=> {
             let newCurrentAnswer = "3"
             return newCurrentAnswer
-        })}
+            })
+            setButton1Clicked(()=>{
+                return false
+            })
+            setButton2Clicked(()=>{
+                return false
+            })
+            setButton3Clicked(()=>{
+                return false
+            })
+            setButton4Clicked(()=>{
+                return true
+            })}
 
     const handleQuestionChange = () =>{
             setNextQuestionButtonValue(()=>{
@@ -110,31 +162,51 @@ export default function Guessing_game(){
     return(
 
         <div>
-        <header className="flex justify-center items-center">
-            <h1 className="text-5xl text-strong">{currentQuestion}</h1>
+        <header className="flex justify-center items-center mb-2">
+            <h1 className="text-5xl font-extrabold ">Trivia Game</h1>
         </header>
-        <hr />
-        <div>
-            <table>
-                <tr>
-                    <td><button onClick={defineCurrentAnswerAsId0}>{answer1}</button></td>
-                    <td><button onClick={defineCurrentAnswerAsId1}>{answer2}</button></td>
-                </tr>
-                <tr>
-                    <td><button onClick={defineCurrentAnswerAsId2}>{answer3}</button></td>
-                    <tr><button onClick={defineCurrentAnswerAsId3}>{answer4}</button></tr>
-                </tr>
-            </table>
+        <div className="w-full h-1 mb-10 bg-textColor"></div>
 
-        <button onClick={handleResult}>commit your answer</button>
-        {nextQuestionButtonValue    && (<button onClick={handleQuestionChange}>next question</button>)}
+        <main>
+        <h1 className="text-3xl  mb-5 flex justify-center text-strong">{currentQuestion}</h1>
+
+        <div>
+            <div className="justify-center flex space-x-6">
+                {button1Clicked && (<div className="w-40 h-15 bg-itemsHover flex  justify-center rounded-md border"><button className="h-full w-full" onClick={defineCurrentAnswerAsId0}>{answer1}</button></div> )}
+                {button1Clicked || (<div className="w-40 h-15 bg-items hover:bg-itemsHover flex  justify-center rounded-md border"><button className="h-full w-full" onClick={defineCurrentAnswerAsId0}>{answer1}</button></div>)}
+                {button2Clicked && (<div className="w-40 h-15 bg-itemsHover flex justify-center rounded-md border"><button className="h-full w-full" onClick={defineCurrentAnswerAsId1}>{answer2}</button></div>)}
+                {button2Clicked || (<div className="w-40 h-15 bg-items hover:bg-itemsHover flex justify-center rounded-md border"><button className="h-full w-full" onClick={defineCurrentAnswerAsId1}>{answer2}</button></div>)}
+            </div>
+        </div>
+        <div>
+            <div className="justify-center flex space-x-6 mt-4">
+                {button3Clicked ||(<div className="w-40 h-15 bg-items hover:bg-itemsHover flex justify-center rounded-md border"> <button className="h-full w-full" onClick={defineCurrentAnswerAsId2}>{answer3}</button></div>)}
+                {button3Clicked &&(<div className="w-40 h-15 bg-itemsHover flex justify-center rounded-md border"> <button className="h-full w-full" onClick={defineCurrentAnswerAsId2}>{answer3}</button></div>)}
+                {button4Clicked ||(<div className="w-40 h-15 bg-items hover:bg-itemsHover flex justify-center rounded-md border"> <button className="h-full w-full" onClick={defineCurrentAnswerAsId3}>{answer4}</button></div>)}
+                {button4Clicked &&(<div className="w-40 h-15 bg-itemsHover flex justify-center rounded-md border"> <button className="h-full w-full" onClick={defineCurrentAnswerAsId3}>{answer4}</button></div>)}
+            </div>
+        </div>
+            <div className="flex justify-center mt-7">
+                <div className="w-55 h-15 hover:bg-itemsHover bg-items flex justify-center rounded-md border "><button onClick={handleResult}>commit your answer</button></div>
+            <div/>
+        </div>
+        {nextQuestionButtonValue    && (
+        <div className="mt-5 mb-20">
+            <div className=" flex justify-center">
+                <div className="w-55 h-15 hover:bg-itemsHover bg-items flex justify-center rounded-md border "><button className="" onClick={handleQuestionChange}>next question</button></div>
+            </div>
+        </div>)}
         {isAnswerCorrect && (
-            <h1>You're Correct</h1>
+            <div className="flex justify-center">
+                <h1 className="text-2xl">You got it</h1>
+            </div>
         ) }
         {isAnswerWrong &&(
-            <h1>you're wrong</h1>
-        )}
+        <div className="flex justify-center">
+            <h1 className="text-2xl">You missed</h1>
         </div>
+        )}
+        </main>
         </div>
     )
 }

@@ -77,11 +77,21 @@ export default function Guessing_game(){
     //html display
     return(
         <>
+
         <div>
-        <h1 className="5xl">Guess the number</h1>
-        <hr />
-        {gameStartButton && (<button className="border rounded bg-slate-300 focus:bg-slate-100 hover:bg-slate-100 " onClick={handleStart}>Start game</button>)}
+            <div className="flex justify-center">
+                <h1 className="text-3xl font-extrabold ">Guessing game</h1>
+            </div>
+            <div className=" w-full h-1 bg-textColor"></div>
         </div>
+        
+        {gameStartButton && (
+        <div className="justify-center flex mt-60 ">
+            <div className="rounded bg-items focus:bg-itemsHover hover:bg-itemsHover p-6 h-4 justify-center flexbox">
+                <button className="h-full w-full" onClick={handleStart}>Start game</button>
+            </div>
+
+        </div>)}
         
         <div>
         {gameStarted && (        
